@@ -27,7 +27,7 @@ function main() {
                 rl.close();
                 return;
             }
-            const pattern = /(\w+)\((.*)\)/;
+            const pattern = /([\w\/]+)\((.*)\)/;
             const match = pattern.exec(line);
             
             if (match) {
