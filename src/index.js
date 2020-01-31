@@ -31,14 +31,14 @@ function main() {
             const match = pattern.exec(line);
             
             if (match) {
-                const method = match[1];
-                let params = flatMap(
-                    s => s ? [JSON.parse(s)] : [],
-                    match[2].split(/,\s*/)
-                );
-                console.log(`Sending request ${method} with params ${JSON.stringify(params)}...`);
-                
                 try {
+                    const method = match[1];
+                    let params = flatMap(
+                        s => s ? [JSON.parse(s)] : [],
+                        match[2].split(/,\s*/)
+                    );
+                    console.log(`Sending request ${method} with params ${JSON.stringify(params)}...`);
+                
                     const response = await connection.sendRequest(method, ...params)
                     console.log(JSON.stringify(response, null, 2));
                 } catch (e) {
