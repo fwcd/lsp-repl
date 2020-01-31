@@ -15,6 +15,9 @@ function main() {
             new rpc.StreamMessageWriter(serverProcess.stdin)
         );
         connection.listen();
+        connection.onNotification((method, params) => {
+            console.log(`Notification: ${method} ${JSON.stringify(params, null, 2)}`);
+        });
         
         const rl = readline.createInterface(process.stdin, process.stdout);
         rl.setPrompt("LSP> ");
