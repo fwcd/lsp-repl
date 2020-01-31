@@ -33,10 +33,7 @@ function main() {
             if (match) {
                 try {
                     const method = match[1];
-                    let params = flatMap(
-                        s => s ? [JSON.parse(s)] : [],
-                        match[2].split(/,\s*/)
-                    );
+                    let params = JSON.parse(`[${match[2]}]`);
                     console.log(`Sending request ${method} with params ${JSON.stringify(params)}...`);
                 
                     const response = await connection.sendRequest(method, ...params)
