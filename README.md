@@ -5,5 +5,5 @@ An interactive environment that acts as a client to a [language server](https://
 Run `npm start -- path/to/languageserver`, then enter:
 
 ```
-LSP> initialize({})
+LSP> initialize({"capabilities":{}})
 ```
