@@ -4,6 +4,7 @@
     "description": "Interactive LSP client shell",
     "main": "src/index.js",
     "scripts": {
+        "start": "node src/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -15,5 +16,8 @@
     "bugs": {
         "url": "https://github.com/fwcd/lsp-repl/issues"
     },
-    "homepage": "https://github.com/fwcd/lsp-repl#readme"
+    "homepage": "https://github.com/fwcd/lsp-repl#readme",
+    "dependencies": {
+        "vscode-jsonrpc": "^5.0.1"
+    }
 }
