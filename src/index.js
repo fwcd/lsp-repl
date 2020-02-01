@@ -3,8 +3,6 @@ const process = require("process");
 const readline = require("readline");
 const rpc = require("vscode-jsonrpc");
 
-const flatMap = (f, arr) => arr.reduce((xs, x) => [...xs, ...f(x)], []);
-
 function main() {
     const argv = process.argv;
     if (argv.length == 3) {
@@ -36,7 +34,7 @@ function main() {
                     let params = JSON.parse(`[${match[2]}]`);
                     console.log(`Sending request ${method} with params ${JSON.stringify(params)}...`);
                 
-                    const response = await connection.sendRequest(method, ...params)
+                    const response = await connection.sendRequest(method, ...params);
                     console.log(JSON.stringify(response, null, 2));
                 } catch (e) {
                     console.log(e);
@@ -52,7 +50,7 @@ function main() {
             process.exit(0);
         });
     } else {
-        console.log(`Usage: node ${argv[1]} [path to language server executable]`)
+        console.log(`Usage: node ${argv[1]} [path to language server executable]`);
     }
 }
 
