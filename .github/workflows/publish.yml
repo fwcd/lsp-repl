@@ -7,6 +7,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment:
+      name: npm
+      url: ${{ steps.set_url.outputs.env_url }}
     if: github.repository == 'fwcd/lsp-repl'
     steps:
       - uses: actions/checkout@v4
@@ -15,9 +18,25 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
+      - name: Check version
+        id: version
+        run: |
+          echo "==> Checking version..."
+          pkg_version="$(jq -r .version package.json)"
+          tag_version="$(echo "$GITHUB_REF" | sed -e "s#refs/tags/v##g")"
+          if [ "$pkg_version" != "$tag_version" ]; then
+            echo "Package version '$pkg_version' does not match tag version '$tag_version'!" >&2
+            exit 1
+          fi
+          echo "version=$tag_version" >> "$GITHUB_OUTPUT"
       - name: Install dependencies
         run: npm install
       - name: Publish to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Set environment url
+        id: set_url
+        run: |
+          version="${{ steps.version.outputs.version }}"
+          echo "env_url=https://www.npmjs.com/package/lsp-repl/v/$version" >> "$GITHUB_OUTPUT"
