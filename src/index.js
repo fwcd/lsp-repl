@@ -1,7 +1,7 @@
 const childProcess = require("child_process");
 const process = require("process");
 const readline = require("readline");
-const rpc = require("vscode-jsonrpc");
+const rpc = require("vscode-jsonrpc/node");
 
 function main() {
     const argv = process.argv;

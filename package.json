@@ -18,6 +18,6 @@
     },
     "homepage": "https://github.com/fwcd/lsp-repl#readme",
     "dependencies": {
-        "vscode-jsonrpc": "^5.0.1"
+        "vscode-jsonrpc": "^8.2.1"
     }
 }
