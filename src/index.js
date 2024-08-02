@@ -4,6 +4,14 @@ const process = require("process");
 const readline = require("readline");
 const rpc = require("vscode-jsonrpc/node");
 
+const completions = require("../resources/completions.json");
+
+function completer(line) {
+    const hits = completions.filter(c => c.startsWith(line));
+    // Show all completions if none found
+    return [hits.length ? hits : completions, line]
+}
+
 function main() {
     const argv = process.argv;
     if (argv.length == 3) {
@@ -21,6 +29,7 @@ function main() {
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
+            completer,
         });
         rl.setPrompt("LSP> ");
         rl.prompt();

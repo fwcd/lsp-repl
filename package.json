@@ -8,6 +8,7 @@
     },
     "scripts": {
         "start": "node src/index.js",
+        "generate-completions": "curl -L 'https://raw.githubusercontent.com/microsoft/vscode-languageserver-node/main/protocol/metaModel.json' | jq '[.requests.[].method]' > resources/completions.json",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
