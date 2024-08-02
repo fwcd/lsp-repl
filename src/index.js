@@ -18,7 +18,10 @@ function main() {
             console.log(`Notification: ${method} ${JSON.stringify(params, null, 2)}`);
         });
         
-        const rl = readline.createInterface(process.stdin, process.stdout);
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout,
+        });
         rl.setPrompt("LSP> ");
         rl.prompt();
         rl.on("line", async line => {
