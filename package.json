@@ -3,6 +3,9 @@
     "version": "1.1.1",
     "description": "Interactive LSP client shell",
     "main": "src/index.js",
+    "bin": {
+        "lsp-repl": "src/index.js"
+    },
     "scripts": {
         "start": "node src/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
